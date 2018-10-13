@@ -22,11 +22,11 @@ random_seed = 2
 filelist = ["data/playmobil 1/image%s.jpg" %i for i in range(67)] + ["data/playmobil 2/image%s.jpg" %i for i in range(79)] + ["data/playmobil 3/image%s.jpg" %i for i in range(77)] #a list containg the data names
 
 X = np.array([np.array(Image.open(fname)) for fname in filelist]) # images
-Y = np.array([1]*67 + 79*[2] + [3]*77) #labels
+Y = np.array([0]*67 + 79*[1] + [2]*77) #labels
 print(X.shape)
 # Normalize the data
 X = (X - np.mean(X)/np.std(X))
-
+print(Y.shape)
 #one hot encode the labels
 Y = to_categorical(Y,3)
 
