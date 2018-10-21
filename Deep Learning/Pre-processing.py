@@ -23,10 +23,10 @@ filelist = ["data/playmobil 1/image%s.jpg" %i for i in range(67)] + ["data/playm
 
 X = np.array([np.array(Image.open(fname)) for fname in filelist]) # images
 Y = np.array([0]*67 + 79*[1] + [2]*77) #labels
-print(X.shape)
+
 # Normalize the data
 X = (X - np.mean(X)/np.std(X))
-print(Y.shape)
+
 #one hot encode the labels
 Y = to_categorical(Y,3)
 
@@ -52,7 +52,6 @@ model.add(Dropout(0.25))
 model.add(Dense(3, activation = "softmax"))
 
 optimizer = keras.optimizers.SGD(lr=0.01, momentum=0.0, decay=0.0, nesterov=False)
-
 
 model.compile(loss=losses.categorical_crossentropy,
               optimizer=optimizer)
