@@ -1,7 +1,7 @@
 #include <Servo.h>
 int newData = false ;
 char receivedChar = "" ;
-char message[6] = "HE" ;
+char message[6] = "NO" ;
 int servo[4] = {9,8,7,6};
 
 Servo entree1;
@@ -32,10 +32,13 @@ void loop() {
       recvInfo();
       if (newData == true)
       {
-        if (receivedChar == "Yes")
+        if (receivedChar == "1")
           ouvrir_sortie();
         else
           ouvrir_entree();
+        newData = false;
+        message[6] = "NO";
+        receivedChar = "0"; 
       }
     }
     
@@ -70,5 +73,4 @@ void ouvrir_sortie()
   delay(5000);
   sortie1.write(0);
 }
-
 
